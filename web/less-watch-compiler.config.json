@@ -3,5 +3,5 @@
     "minified": false,
     "sourceMap": false,
     "watchFolder": "src/less",
-    "outputFolder": "src"
+    "outputFolder": "src/css"
 }
