@@ -6,7 +6,7 @@ import {Provider} from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import {Router} from 'react-router-dom'
 import {routerReducer, routerMiddleware} from 'react-router-redux'
-import {composeWithDevTools} from 'redux-devtools-extension';
+import {composeWithDevTools} from 'redux-devtools-extension'
 
 import reducers from './reducers/index'
 import App from './App'
