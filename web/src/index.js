@@ -7,7 +7,7 @@ import createHistory from 'history/createBrowserHistory'
 import {Router} from 'react-router-dom'
 import {routerReducer, routerMiddleware} from 'react-router-redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
-
+import thunk from 'redux-thunk';
 import reducers from './reducers/index'
 import App from './App'
 
@@ -17,7 +17,7 @@ const middleware = routerMiddleware(history)
 
 const reducer = combineReducers({reducers, router: routerReducer})
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(middleware)))
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(middleware, thunk)))
 
 ReactDOM.render(
     <Provider store={store}>
@@ -25,4 +25,7 @@ ReactDOM.render(
         <App/>
     </Router>
 </Provider>, document.getElementById('root'))
+
 registerServiceWorker();
+
+//TODO: add redux-thunk
