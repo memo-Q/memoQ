@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "71953638012",
+    "firebase_url": "https://memoq-0328.firebaseio.com",
+    "project_id": "memoq-0328",
+    "storage_bucket": "memoq-0328.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71953638012:android:f8c650ef13c18562",
+        "android_client_info": {
+          "package_name": "com.memoq.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71953638012-66e9agtgfcijcrmbi0l8d8u67kol6a2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOaumtNPY-EEKGT7s2vvHF6w5SXKXq5ns"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
