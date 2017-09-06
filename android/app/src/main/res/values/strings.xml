@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">MemoQ</string>
     <string name="facebook_app_id" translatable="false">767591293445543</string>
+    <string name="google_web_client_id" translatable="false">71953638012-66e9agtgfcijcrmbi0l8d8u67kol6a2q.apps.googleusercontent.com</string>
 
     <!-- Font -->
     <string name="roboto_medium" translatable="false">sans-serif-medium</string>
