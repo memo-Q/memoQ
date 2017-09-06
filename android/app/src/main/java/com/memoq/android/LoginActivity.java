@@ -18,6 +18,13 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -28,6 +35,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -43,6 +51,8 @@ import timber.log.Timber;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final int RC_SIGN_IN = 9001;
+
     @BindView(R.id.et_email) EditText mEmailEditText;
     @BindView(R.id.et_password) EditText mPasswordEditText;
     @BindView(R.id.progress_wheel) ProgressWheel mProgressWheel;
@@ -50,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private CallbackManager mCallbackManager;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                Timber.d("onAuthStateChanged:signed_in:%s", firebaseUser.getUid());
+                Timber.d("onAuthStateChanged:signed_in: %s", firebaseUser.getUid());
                 User.find(firebaseUser.getUid(), new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -99,8 +110,8 @@ public class LoginActivity extends AppCompatActivity {
         LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Timber.d("facebook:onSuccess:%s", loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
+                Timber.d("facebook:onSuccess: %s", loginResult);
+                handleSignInFacebook(loginResult.getAccessToken());
             }
 
             @Override
@@ -113,12 +124,34 @@ public class LoginActivity extends AppCompatActivity {
                 Timber.e(error, "facebook:onError");
             }
         });
+
+        GoogleSignInOptions gso = new GoogleSignInOptions
+            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+            .enableAutoManage(this, null)
+            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+            .build();
     }
 
     @Override
     public void onStart() {
         super.onStart();
         mFirebaseAuth.addAuthStateListener(mAuthListener);
+
+        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
+        if (opr.isDone()) {
+            GoogleSignInResult result = opr.get();
+            handleSignInGoogle(result);
+        } else {
+            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
+                @Override
+                public void onResult(GoogleSignInResult googleSignInResult) {
+                    handleSignInGoogle(googleSignInResult);
+                }
+            });
+        }
     }
 
     @Override
@@ -132,18 +165,37 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInGoogle(result);
+            return;
+        }
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void handleFacebookAccessToken(AccessToken token) {
-        Timber.d("handleFacebookAccessToken:%s", token);
+    private void handleSignInFacebook(AccessToken token) {
+        Timber.d("handleSignInFacebook: %s", token);
         mProgressWheel.setVisibility(View.VISIBLE);
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        signInWithCredential(credential);
+    }
+
+    private void handleSignInGoogle(GoogleSignInResult result) {
+        Timber.d("handleSignInGoogle: %b", result.isSuccess());
+        if (result.isSuccess()) {
+            mProgressWheel.setVisibility(View.VISIBLE);
+            GoogleSignInAccount acct = result.getSignInAccount();
+            AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+            signInWithCredential(credential);
+        }
+    }
+
+    private void signInWithCredential(AuthCredential credential) {
         mFirebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    Timber.d("signInWithCredential:onComplete:%b", task.isSuccessful());
+                    Timber.d("signInWithCredential:onComplete: %b", task.isSuccessful());
                     if (!task.isSuccessful()) {
                         mProgressWheel.setVisibility(View.GONE);
                         Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -193,6 +245,12 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.btn_fb_login)
     public void onFacebookLoginButtonClick() {
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
+    }
+
+    @OnClick(R.id.btn_google_login)
+    public void onGoogleLoginButtonClick() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     @OnClick(R.id.txt_create_account)
