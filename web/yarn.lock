@@ -698,11 +698,11 @@ babel-plugin-dynamic-import-node@1.0.2:
     babel-types "^6.24.1"
 
 babel-plugin-istanbul@^4.0.0:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/babel-plugin-istanbul/-/babel-plugin-istanbul-4.1.4.tgz#18dde84bf3ce329fddf3f4103fae921456d8e587"
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/babel-plugin-istanbul/-/babel-plugin-istanbul-4.1.5.tgz#6760cdd977f411d3e175bb064f2bc327d99b2b6e"
   dependencies:
     find-up "^2.1.0"
-    istanbul-lib-instrument "^1.7.2"
+    istanbul-lib-instrument "^1.7.5"
     test-exclude "^4.1.1"
 
 babel-plugin-jest-hoist@^20.0.3:
@@ -1464,12 +1464,12 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000731"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000731.tgz#6f5296f1fa67331ee2d10b87b8fdcd41f3886e47"
+  version "1.0.30000733"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000733.tgz#3a625bc41c7a9f99d59d64552857dd1af0edd9d4"
 
 caniuse-lite@^1.0.30000670, caniuse-lite@^1.0.30000718:
-  version "1.0.30000731"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000731.tgz#6f2b9096285af3c7bcf2abe39647bb525d68c842"
+  version "1.0.30000733"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000733.tgz#ebfc48254117cc0c66197a4536cb4397a6cfbccd"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -1574,8 +1574,8 @@ cjson@^0.3.1:
     json-parse-helpfulerror "^1.0.3"
 
 clap@^1.0.9:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/clap/-/clap-1.2.0.tgz#59c90fe3e137104746ff19469a27a634ff68c857"
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/clap/-/clap-1.2.2.tgz#683f6f93a320794d129386d74b2a1d2d66fede7e"
   dependencies:
     chalk "^1.1.3"
 
@@ -1584,8 +1584,8 @@ classnames@^2.2.5:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
 clean-css@4.1.x:
-  version "4.1.8"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.8.tgz#061455b2494a750ac98f46d8d5ebb17c679ea9d1"
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.9.tgz#35cee8ae7687a49b98034f70de00c4edd3826301"
   dependencies:
     source-map "0.5.x"
 
@@ -2879,12 +2879,12 @@ extend@^3.0.0, extend@~3.0.0:
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
 
 external-editor@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/external-editor/-/external-editor-2.0.4.tgz#1ed9199da9cbfe2ef2f7a31b2fde8b0d12368972"
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/external-editor/-/external-editor-2.0.5.tgz#52c249a3981b9ba187c7cacf5beb50bf1d91a6bc"
   dependencies:
     iconv-lite "^0.4.17"
     jschardet "^1.4.2"
-    tmp "^0.0.31"
+    tmp "^0.0.33"
 
 extglob@^0.3.1:
   version "0.3.2"
@@ -3070,8 +3070,8 @@ find-up@^2.0.0, find-up@^2.1.0:
     locate-path "^2.0.0"
 
 firebase-tools@^3.9.1:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-3.11.0.tgz#8375fc59f1f458f88deabb4ef2a695bce5f81d7e"
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-3.12.0.tgz#b88aaebed8d313eb59dea89171b66879a4652898"
   dependencies:
     JSONStream "^1.2.1"
     archiver "^0.16.0"
@@ -4253,7 +4253,7 @@ istanbul-lib-hook@^1.0.7:
   dependencies:
     append-transform "^0.4.0"
 
-istanbul-lib-instrument@^1.4.2, istanbul-lib-instrument@^1.7.2, istanbul-lib-instrument@^1.8.0:
+istanbul-lib-instrument@^1.4.2, istanbul-lib-instrument@^1.7.5, istanbul-lib-instrument@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/istanbul-lib-instrument/-/istanbul-lib-instrument-1.8.0.tgz#66f6c9421cc9ec4704f76f2db084ba9078a2b532"
   dependencies:
@@ -5691,7 +5691,7 @@ os-locale@^2.0.0:
     lcid "^1.0.0"
     mem "^1.1.0"
 
-os-tmpdir@^1.0.0, os-tmpdir@^1.0.1, os-tmpdir@~1.0.0, os-tmpdir@~1.0.1, os-tmpdir@~1.0.2:
+os-tmpdir@^1.0.0, os-tmpdir@^1.0.1, os-tmpdir@~1.0.0, os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
 
@@ -6713,8 +6713,8 @@ redux@^3.7.1:
     symbol-observable "^1.0.3"
 
 regenerate@^1.2.1:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.3.2.tgz#d1941c67bad437e1be76433add5b385f95b19260"
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.3.3.tgz#0c336d3980553d755c39b586ae3b20aa49c82b7f"
 
 regenerator-runtime@^0.10.0:
   version "0.10.5"
@@ -7756,17 +7756,11 @@ tmp@0.0.27:
   dependencies:
     os-tmpdir "~1.0.0"
 
-tmp@0.0.33:
+tmp@0.0.33, tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
   dependencies:
     os-tmpdir "~1.0.2"
-
-tmp@^0.0.31:
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.31.tgz#8f38ab9438e17315e5dbd8b3657e8bfb277ae4a7"
-  dependencies:
-    os-tmpdir "~1.0.1"
 
 tmpl@1.0.x:
   version "1.0.4"
@@ -7862,8 +7856,8 @@ ua-parser-js@^0.7.9:
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.14.tgz#110d53fa4c3f326c121292bbeac904d2e03387ca"
 
 uglify-js@3.1.x, uglify-js@^3.0.13:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.1.0.tgz#92fae17b88dfbc3c394175a935044cdbcf4085ae"
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.1.1.tgz#e7144307281a1bc38a9a20715090b546c9f44791"
   dependencies:
     commander "~2.11.0"
     source-map "~0.5.1"
